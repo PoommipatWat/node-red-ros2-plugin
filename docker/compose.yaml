@@ -24,9 +24,15 @@ services:
             context: .
             args:
                 ROS_DISTRO: humble
-        ports:
-            - "1880:1880"
-            - "9229:9229"
+        stdin_open: true
+        tty: true
+        network_mode: host
+        ipc: host
+        privileged: true
+        stop_grace_period: 1s
+        # ports:
+        #     - "1880:1880"
+        #     - "9229:9229"
         command: /entrypoint.bash node --inspect=192.168.42.15:9229 /usr/bin/node-red
         #command: tail -F /dev/null
 
